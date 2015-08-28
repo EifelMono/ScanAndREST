@@ -9,7 +9,7 @@ namespace ScanAndREST
         public RootPage()
         {
             var menuPage = new MenuPage();
-
+            menuPage.Icon= "Icons/menu.png";
             menuPage.Menu.ItemSelected += (sender, e) => NavigateTo(e.SelectedItem as MenuItem);
 
             Master = menuPage;

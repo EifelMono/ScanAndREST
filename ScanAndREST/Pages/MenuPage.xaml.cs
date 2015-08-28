@@ -47,7 +47,7 @@ namespace ScanAndREST
         {
             this.Add(new MenuItem()
                 { 
-                    Title = "Contracts", 
+                    Title = "Contracts",
                     IconSource = "contracts.png", 
                     TargetType = typeof(ScanPage)
                 });
@@ -96,6 +96,7 @@ namespace ScanAndREST
 
             var cell = new DataTemplate(typeof(ImageCell));
             cell.SetBinding(TextCell.TextProperty, "Title");
+            cell.SetBinding(TextCell.TextColorProperty, "White");
             cell.SetBinding(ImageCell.ImageSourceProperty, "IconSource");
 
             ItemTemplate = cell;

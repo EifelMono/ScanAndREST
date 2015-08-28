@@ -97,15 +97,15 @@
     </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="Media.Plugin">
-      <HintPath>..\packages\Xam.Plugin.Media.1.0.0\lib\Xamarin.iOS10\Media.Plugin.dll</HintPath>
-    </Reference>
-    <Reference Include="Media.Plugin.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.Media.1.0.0\lib\Xamarin.iOS10\Media.Plugin.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="RestSharp.Portable">
       <HintPath>..\packages\FubarCoder.RestSharp.Portable.2.4.4\lib\Xamarin.iOS10\RestSharp.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Media.Plugin">
+      <HintPath>..\packages\Xam.Plugin.Media.1.0.1\lib\Xamarin.iOS10\Media.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Media.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Media.1.0.1\lib\Xamarin.iOS10\Media.Plugin.Abstractions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -170,5 +170,17 @@
   <ItemGroup>
     <Folder Include="Resources\Images.xcassets\AppIcons.appiconset\" />
     <Folder Include="Resources\Images.xcassets\LaunchImage.launchimage\" />
+    <Folder Include="Resources\Icons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Icons\reload.png" />
+    <BundleResource Include="Resources\Icons\reload%402x.png" />
+    <BundleResource Include="Resources\Icons\reload%403x.png" />
+    <BundleResource Include="Resources\Icons\menu.png" />
+    <BundleResource Include="Resources\Icons\menu%402x.png" />
+    <BundleResource Include="Resources\Icons\menu%403x.png" />
+    <BundleResource Include="Resources\Icons\home.png" />
+    <BundleResource Include="Resources\Icons\home%402x.png" />
+    <BundleResource Include="Resources\Icons\home%403x.png" />
   </ItemGroup>
 </Project>
