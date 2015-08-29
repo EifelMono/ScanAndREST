@@ -5,6 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 using ImageCircle.Forms.Plugin.iOS;
+using Refractored.Xam.Forms.Vibrate.iOS;
 
 namespace ScanAndREST.iOS
 {
@@ -14,11 +15,12 @@ namespace ScanAndREST.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            Vibrate.Init();
             ImageCircleRenderer.Init();
 
             // Code for starting up the Xamarin Test Cloud Agent
             #if ENABLE_TEST_CLOUD
-			Xamarin.Calabash.Start();
+            Xamarin.Calabash.Start();
             #endif
 
             LoadApplication(new App());

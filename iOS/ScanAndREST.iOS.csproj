@@ -107,6 +107,18 @@
     <Reference Include="Media.Plugin.Abstractions">
       <HintPath>..\packages\Xam.Plugin.Media.1.0.1\lib\Xamarin.iOS10\Media.Plugin.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Refractored.Xam.Vibrate.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Forms.Vibrate.1.0.0.6\lib\Xamarin.iOS10\Refractored.Xam.Vibrate.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.Xam.Forms.Vibrate.iOS">
+      <HintPath>..\packages\Xam.Plugins.Forms.Vibrate.1.0.0.6\lib\Xamarin.iOS10\Refractored.Xam.Forms.Vibrate.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-Xamarin.iOS+Xamarin.Mac\PCLStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage.Abstractions">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-Xamarin.iOS+Xamarin.Mac\PCLStorage.Abstractions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ScanAndREST\ScanAndREST.csproj">
@@ -182,5 +194,14 @@
     <BundleResource Include="Resources\Icons\home.png" />
     <BundleResource Include="Resources\Icons\home%402x.png" />
     <BundleResource Include="Resources\Icons\home%403x.png" />
+    <BundleResource Include="Resources\Icons\Minus%403x.png" />
+    <BundleResource Include="Resources\Icons\Minus.png" />
+    <BundleResource Include="Resources\Icons\Minus%402x.png" />
+    <BundleResource Include="Resources\Icons\Plus.png" />
+    <BundleResource Include="Resources\Icons\Plus%402x.png" />
+    <BundleResource Include="Resources\Icons\Plus%403x.png" />
+    <BundleResource Include="Resources\Icons\Settings.png" />
+    <BundleResource Include="Resources\Icons\Settings%402x.png" />
+    <BundleResource Include="Resources\Icons\Settings%403x.png" />
   </ItemGroup>
 </Project>

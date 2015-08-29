@@ -8,23 +8,20 @@ namespace ScanAndREST
     {
         public App()
         {
-            // The root page of your application
+            Globals.Settings.Read();
             MainPage = new RootPage();
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
         }
 
         protected override void OnSleep()
         {
-            // Handle when your app sleeps
         }
 
         protected override void OnResume()
         {
-            // Handle when your app resumes
         }
     }
 }

@@ -13,11 +13,23 @@ namespace ScanAndREST
         {
             InitializeComponent();
 
-            Icon = "settings.png";
-            Title = "menu"; // The Title property must be set.
-            BackgroundColor = Color.FromHex("333333");
+            Icon= "Icons/menu.png";
+            Title = "menu"; 
+            BackgroundColor = Color.Gray;
 
-            Menu = new MenuListView();
+            DataTemplate cell;
+            Menu = new ListView()
+                {
+                    
+                    VerticalOptions = LayoutOptions.FillAndExpand,
+                    BackgroundColor = Color.Transparent,
+                    ItemTemplate= (cell = new DataTemplate(typeof(ImageCell))),
+                };
+            cell.SetBinding(TextCell.TextProperty, "Title");
+            cell.SetBinding(TextCell.TextColorProperty, "White");
+            cell.SetBinding(ImageCell.ImageSourceProperty, "IconSource");
+
+            Globals.Settings.NotifyEvent = Changes;
 
             var menuLabel = new ContentView
             {
@@ -25,7 +37,7 @@ namespace ScanAndREST
                 Content = new Label
                 {
                     TextColor = Color.FromHex("AAAAAA"),
-                    Text = "MENU", 
+                    Text = "Select your REST interface", 
                 }
             };
 
@@ -39,39 +51,20 @@ namespace ScanAndREST
 
             Content = layout;
         }
-    }
 
-    public class MenuListData : List<MenuItem>
-    {
-        public MenuListData()
+        protected void Changes()
         {
-            this.Add(new MenuItem()
-                { 
-                    Title = "Contracts",
-                    IconSource = "contracts.png", 
-                    TargetType = typeof(ScanPage)
-                });
-
-            this.Add(new MenuItem()
-                { 
-                    Title = "Leads", 
-                    IconSource = "Lead.png", 
-                    TargetType = typeof(ScanPage)
-                });
-
-            this.Add(new MenuItem()
-                { 
-                    Title = "Accounts", 
-                    IconSource = "Accounts.png", 
-                    TargetType = typeof(ScanPage)
-                });
-
-            this.Add(new MenuItem()
-                {
-                    Title = "Opportunities",
-                    IconSource = "Opportunity.png",
-                    TargetType = typeof(ScanPage)
-                });
+            var list = new List<MenuItem>();
+            foreach(var item in Globals.Settings.Items)
+            {
+                list.Add(new MenuItem
+                    {
+                        Title = item.Name,
+                        IconSource = "",
+                        TargetType = typeof(ScanPage),
+                    });
+            }
+            Menu.ItemsSource = list;
         }
     }
 
@@ -83,25 +76,5 @@ namespace ScanAndREST
 
         public Type TargetType { get; set; }
     }
-
-    public class MenuListView : ListView
-    {
-        public MenuListView()
-        {
-            List<MenuItem> data = new MenuListData();
-
-            ItemsSource = data;
-            VerticalOptions = LayoutOptions.FillAndExpand;
-            BackgroundColor = Color.Transparent;
-
-            var cell = new DataTemplate(typeof(ImageCell));
-            cell.SetBinding(TextCell.TextProperty, "Title");
-            cell.SetBinding(TextCell.TextColorProperty, "White");
-            cell.SetBinding(ImageCell.ImageSourceProperty, "IconSource");
-
-            ItemTemplate = cell;
-        }
-    }
-
 }
 
