@@ -18,9 +18,8 @@ namespace ScanAndREST
 
         public ScanPage()
         {
-            InitializeComponent();
-
             #region Design
+            InitializeComponent();
             ToolbarItems.Add(toolbarItemSettings = new ToolbarItem("change", "Icons/Settings.png", new Action(() =>
                         {
                             Navigation.PushAsync(new SettingsPage(), true);
@@ -99,6 +98,7 @@ namespace ScanAndREST
                 if (!string.IsNullOrEmpty(CurrentSettings.RESTUrlBase))
                     try
                     {
+                    circleImageStart.Source = ImageSource.FromResource("ScanAndREST.Resources.Icons.ScanAndRESTResult.png");
                         var client = new RestClient(CurrentSettings.RESTUrlBase);
                         client.Timeout = new TimeSpan(0, 0, 2);
 
@@ -116,6 +116,7 @@ namespace ScanAndREST
             finally
             {
                 circleImageStart.BorderColor = Color.Black;
+                circleImageStart.Source = ImageSource.FromResource("ScanAndREST.Resources.Icons.ScanAndRESTStart.png");
             }
         }
     }

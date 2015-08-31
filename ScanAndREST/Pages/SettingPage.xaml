@@ -1,5 +1,27 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ScanAndREST.SettingPage">
-	<ContentPage.Content>
-	</ContentPage.Content>
+	<ContentPage.Padding>
+		<OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
+	</ContentPage.Padding>
+	<StackLayout>
+		<TableView Intent="Data" VerticalOptions="Fill" x:Name="tableViewSettingValues">
+			<TableRoot>
+				<TableSection Title="Description">
+					<EntryCell Label="Name" Text="{Binding Name}" Placeholder="Name" Keyboard="Text" />
+					<SwitchCell Text="Default" On= "{Binding Default}" />
+				</TableSection>
+				<TableSection Title="Barcode formats" x:Name="tableSectionBarcodeFormats">
+				</TableSection>
+				<TableSection Title="Barcode options">
+					<SwitchCell Text="AutoRotate" On= "{Binding AutoRotate}" />
+					<SwitchCell Text="TryHarder" On= "{Binding TryHarder}" />
+					<SwitchCell Text="TryInverted" On= "{Binding TryInverted}" />
+					<SwitchCell Text="PureBarcode" On= "{Binding PureBarcode}" />
+				</TableSection>
+				<TableSection Title="REST">
+					<EntryCell Label="RESTUrl" Text="{Binding RESTUrl}" Placeholder="http://localhost:8080/Barcode" Keyboard="Text" />
+				</TableSection>
+			</TableRoot>
+		</TableView>
+	</StackLayout>
 </ContentPage>

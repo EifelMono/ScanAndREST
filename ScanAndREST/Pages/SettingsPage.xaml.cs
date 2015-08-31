@@ -11,11 +11,15 @@ namespace ScanAndREST
         {
             Title = "Settings";
             InitializeComponent();
-            for (int i = 0; i < 10; i++)
+            for (int nr = 0; nr < Globals.Settings.Items.Count; nr++)
+            {
                 Children.Add(new SettingPage
                     {
-                        Title = "Setting "+ i.ToString()
+                        Nr = nr,
+                        Title = Globals.Settings.Items[nr].Name,
+                        SettingValues = Globals.Settings.Items[nr]
                     });
+            }
         }
 
         protected override void OnCurrentPageChanged()

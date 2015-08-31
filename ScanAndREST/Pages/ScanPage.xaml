@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-	xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
-	x:Class="ScanAndREST.ScanPage">
-	<Grid RowSpacing="20" ColumnSpacing="20" >
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions" x:Class="ScanAndREST.ScanPage">
+	<ContentPage.Padding>
+		<OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
+	</ContentPage.Padding>
+	<Grid RowSpacing="20" ColumnSpacing="20">
 		<Grid.RowDefinitions>
-		<RowDefinition Height="10" />
+			<RowDefinition Height="10" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="10" />
 		</Grid.RowDefinitions>
-
 		<Label Grid.Row="1" x:Name="labelBarcode" Text="barcode" HorizontalOptions="Center" />
-		<Label Grid.Row="2" x:Name="labelResult" Text="result"/>
-		<controls:CircleImage Grid.Row="3" x:Name="circleImageStart"  />
+		<Label Grid.Row="2" x:Name="labelResult" Text="result" />
+		<controls:CircleImage Grid.Row="3" x:Name="circleImageStart" />
 	</Grid>
 </ContentPage>
