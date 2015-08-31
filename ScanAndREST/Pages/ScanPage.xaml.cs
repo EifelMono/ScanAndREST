@@ -1,4 +1,4 @@
-﻿#define Simulationx
+﻿#define Simulation
 using System;
 using System.Collections.Generic;
 

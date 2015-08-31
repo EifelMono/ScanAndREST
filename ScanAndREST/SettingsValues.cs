@@ -21,7 +21,7 @@ namespace ScanAndREST
             Items = null;
             try
             {
-                if (await Folder.CheckExistsAsync(FileName)== ExistenceCheckResult.FileExists)
+                if (await Folder.CheckExistsAsync(FileName) == ExistenceCheckResult.FileExists)
                 {
                     var File = await Folder.GetFileAsync(FileName);
                     Items = JsonConvert.DeserializeObject<List<SettingValues>>(await File.ReadAllTextAsync());
@@ -72,16 +72,16 @@ namespace ScanAndREST
                 },
                 new SettingValues
                 {
-                    Name = "OCR",
-                    Default = true,
-                    RESTUrl = "http://lwdeu089kbdk32:14261/Master/Find"
-                },
-                new SettingValues
-                {
                     Name = "example.org",
                     Default = false,
                     RESTUrl = "http://example.org"
-                }
+                },
+                new SettingValues
+                {
+                    Name = "OCR Rowa",
+                    Default = true,
+                    RESTUrl = "http://lwdeu089kbdk32:14261/Master/Find"
+                },
             };
         }
 
