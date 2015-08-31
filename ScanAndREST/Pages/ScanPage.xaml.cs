@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define Simulationx
+using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -58,14 +59,21 @@ namespace ScanAndREST
         {
             if (circleImageStart.BorderColor == Color.Red)
                 return;
+            string Barcode = "";
             labelBarcode.Text = "";
             labelResult.Text = "";
             circleImageStart.BorderColor = Color.Red;
             try
             {
+                #if Simulation
+                if (true)
+                #else
                 if (Backdoor.IsCameraAvailable)
+                #endif
                 {
-                    // The root page of your application
+                    #if Simulation
+                    Barcode = "S i m u l a t i o n";
+                    #else
                     if (scanner == null)
                         scanner = new MobileBarcodeScanner();
                     scanner.TopText = CurrentSettingValues.ScannerTopText;
@@ -73,20 +81,22 @@ namespace ScanAndREST
                     scanner.CancelButtonText = CurrentSettingValues.ScannerCancelText;
                     scanner.FlashButtonText = CurrentSettingValues.ScannerFlashText;
 
-                    MobileBarcodeScanningOptions options = new MobileBarcodeScanningOptions();
-
-                    options.PossibleFormats = new List<ZXing.BarcodeFormat>() { ZXing.BarcodeFormat.CODE_39, ZXing.BarcodeFormat.DATA_MATRIX, ZXing.BarcodeFormat.EAN_13, ZXing.BarcodeFormat.EAN_8 };
-                    options.AutoRotate = false;
-                    options.TryHarder = true;
-                    options.TryInverted = true;
-                    options.BuildMultiFormatReader();
-                    // options.PureBarcode = true;
-
+                    MobileBarcodeScanningOptions options = new MobileBarcodeScanningOptions
+                    {
+                        PossibleFormats = CurrentSettingValues.BarcodeFormatsAsList,
+                        AutoRotate = CurrentSettingValues.AutoRotate,
+                        TryHarder = CurrentSettingValues.TryHarder,
+                        TryInverted = CurrentSettingValues.TryInverted,
+                        PureBarcode = CurrentSettingValues.PureBarcode
+                    };
+                    // options.BuildMultiFormatReader();
+                 
                     var result = await scanner.Scan(options);
-
                     if (result == null)
                         return; 
-                    labelBarcode.Text = result.Text;
+                    Barcode = result.Text;
+                    #endif
+                    labelBarcode.Text = string.Format("Barcode={0}", Barcode);
                     Task.Run(() =>
                         {
                             Backdoor.Vibrate();
@@ -94,19 +104,18 @@ namespace ScanAndREST
                 }
                 else
                     labelBarcode.Text = "No camera avaiable";
-
                 if (!string.IsNullOrEmpty(CurrentSettingValues.RESTUrlBase))
                     try
                     {
                         circleImageStart.Source = ImageSource.FromResource("ScanAndREST.Resources.Icons.ScanAndRESTResult.png");
                         var client = new RestClient(CurrentSettingValues.RESTUrlBase);
-                        client.Timeout = new TimeSpan(0, 0, 2);
+                        client.Timeout = new TimeSpan(0, 0, CurrentSettingValues.RESTTimeout);
 
-                        RestRequest request = new RestRequest(CurrentSettingValues.RESTUrlResource, System.Net.Http.HttpMethod.Post);
-                        request.AddJsonBody(labelBarcode.Text);
+                        RestRequest request = new RestRequest(CurrentSettingValues.RESTUrlResource, System.Net.Http.HttpMethod.Get);
+                        request.AddParameter("Barcode", Barcode);
                         var response = (await client.Execute(request));
-                        var resultCount = BodyEncoding.GetString(response.RawBytes, 0, response.RawBytes.Length);
-                        labelResult.Text = resultCount;
+                        var result = BodyEncoding.GetString(response.RawBytes, 0, response.RawBytes.Length);
+                        labelResult.Text = string.Format("Result={0}", result);
                     }
                     catch
                     {
@@ -142,6 +151,24 @@ namespace ScanAndREST
         }
 
         #endregion
+
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (CurrentSettingValues.Delete)
+            {
+                Globals.Settings.Items.Remove(CurrentSettingValues);
+                Globals.Settings.ChangAndRebuild();
+                (App.Current.MainPage as RootPage).NavigateTo(null);
+            }
+            Globals.Settings.Write();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+        }
 
     }
 }

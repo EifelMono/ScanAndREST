@@ -7,13 +7,14 @@ namespace ScanAndREST
 {
     public class RootPage : MasterDetailPage
     {
+        MenuPage MenuPage;
         public RootPage()
         {
-            var menuPage = new MenuPage();
+            MenuPage= new MenuPage();
    
-            menuPage.Menu.ItemSelected += (sender, e) => NavigateTo(e.SelectedItem as MenuItem);
+            MenuPage.Menu.ItemSelected += (sender, e) => NavigateTo(e.SelectedItem as MenuItem);
 
-            Master = menuPage;
+            Master = MenuPage;
 
             Globals.Settings.ChangAndRebuild();
 
@@ -23,8 +24,11 @@ namespace ScanAndREST
             Detail = new NavigationPage(page);
         }
 
-        void NavigateTo(MenuItem menu)
+        public void NavigateTo(MenuItem menu)
         {
+            if (menu == null)
+                menu = MenuPage.MenuItems.Last();
+            
             Page displayPage = (Page)Activator.CreateInstance(menu.TargetType);
 
             displayPage.Title = menu.Title;

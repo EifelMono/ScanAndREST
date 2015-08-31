@@ -11,11 +11,6 @@ namespace ScanAndREST
         public SettingPage()
         {
             InitializeComponent();
-            ToolbarItems.Add(new ToolbarItem("Ok", "Icons/Ok.png", new Action(() =>
-                        {
-                            Navigation.PopAsync(true);
-                            Globals.Settings.Write();
-                        })));
         }
 
         SettingValues m_SettingValues;
@@ -40,6 +35,36 @@ namespace ScanAndREST
                     string path = string.Format("BarcodeFormats[{0}]", kv.Key);
                     cell.SetBinding(SwitchCell.OnProperty, path);
                     tableSectionBarcodeFormats.Add(cell);
+                }
+
+                if (m_SettingValues.Deleteable)
+                {
+                    var tableSection = new TableSection { Title = "Action" };
+                    tableRoot.Add(tableSection);
+                    var cell = new ViewCell();
+                    tableSection.Add(cell);
+
+                    var button = new Button
+                    {
+                        Text = "Delete",
+                        BackgroundColor = Color.Red
+                    };
+                    button.Image = "Icons/Minus.png";
+
+                    button.Clicked += async (object sender, EventArgs e) =>
+                    {
+                            if (await DisplayAlert("Query", string.Format("Delete {0}", SettingValues.Name), "Ok", "Cancel"))
+                        {
+                            m_SettingValues.Delete = true;
+                            Navigation.PopAsync(true); 
+                        }
+                    };
+
+                    cell.View = new ContentView
+                    {
+                        Padding = new Thickness(10, 5, 10, 5),
+                        Content = button
+                    };
                 }
             }
         }

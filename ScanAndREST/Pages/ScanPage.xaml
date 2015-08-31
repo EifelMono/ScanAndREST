@@ -8,8 +8,8 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="10" />
 		</Grid.RowDefinitions>
-		<Label Grid.Row="1" x:Name="labelBarcode" Text="barcode" HorizontalOptions="Center" />
-		<Label Grid.Row="2" x:Name="labelResult" Text="result" />
+		<Label Grid.Row="1" x:Name="labelBarcode" Text="barcode" HorizontalOptions="Center" VerticalOptions="Center" />
+		<Label Grid.Row="2" x:Name="labelResult" Text="result" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
 		<controls:CircleImage Grid.Row="3" x:Name="circleImageStart" />
 	</Grid>
 </ContentPage>

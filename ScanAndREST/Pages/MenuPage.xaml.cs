@@ -2,41 +2,68 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using System.Linq;
 
 namespace ScanAndREST
 {
     public partial class MenuPage : ContentPage
     {
         public ListView Menu { get; set; }
+        public List<MenuItem> MenuItems { get; set;}
 
         public MenuPage()
         {
             InitializeComponent();
 
-            Icon= "Icons/menu.png";
+            Icon = "Icons/menu.png";
             Title = "menu"; 
             BackgroundColor = Color.Gray;
 
             DataTemplate cell;
             Menu = new ListView()
-                {
-                    VerticalOptions = LayoutOptions.FillAndExpand,
-                    BackgroundColor = Color.Transparent,
-                    ItemTemplate= (cell = new DataTemplate(typeof(ImageCell))),
-                };
+            {
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                BackgroundColor = Color.Transparent,
+                ItemTemplate = (cell = new DataTemplate(typeof(ImageCell))),
+            };
             cell.SetBinding(TextCell.TextProperty, "Title");
             cell.SetBinding(TextCell.TextColorProperty, "White");
             cell.SetBinding(ImageCell.ImageSourceProperty, "IconSource");
 
             Globals.Settings.NotifyEvent = Changes;
 
+            var button = new Button();
+            button.Text = "";
+            button.VerticalOptions = LayoutOptions.Center;
+            button.Image = "Icons/Plus.png";
+            button.Clicked += (object sender, EventArgs e) =>
+            {
+                    Globals.Settings.Items.Add(new SettingValues());
+                    Globals.Settings.ChangAndRebuild();
+                    (App.Current.MainPage as RootPage).NavigateTo(null);
+                    Globals.Settings.Write();
+            };
+
             var menuLabel = new ContentView
             {
                 Padding = new Thickness(10, 36, 0, 5),
-                Content = new Label
+                Content = new StackLayout
                 {
-                    TextColor = Color.FromHex("AAAAAA"),
-                    Text = "Select your REST interface", 
+                    Orientation = StackOrientation.Horizontal,
+                    Children =
+                    {
+                        new Label
+                        {
+                            TextColor = Color.FromHex("AAAAAA"),
+                            Text = "Select your configuration", 
+                            VerticalOptions = LayoutOptions.Center,
+                        },
+                        new Label
+                        {
+                            Text = " ", 
+                        },
+                        button,
+                    }
                 }
             };
 
@@ -53,17 +80,17 @@ namespace ScanAndREST
 
         protected void Changes()
         {
-            var list = new List<MenuItem>();
-            foreach(var item in Globals.Settings.Items)
+            MenuItems = new List<MenuItem>();
+            foreach (var item in Globals.Settings.Items)
             {
-                list.Add(new MenuItem
+                MenuItems.Add(new MenuItem
                     {
                         Title = item.Name,
                         IconSource = "",
                         TargetType = typeof(ScanPage),
                     });
             }
-            Menu.ItemsSource = list;
+            Menu.ItemsSource = MenuItems;
         }
     }
 

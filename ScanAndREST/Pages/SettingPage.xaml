@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ScanAndREST.SettingPage">
 	<StackLayout>
 		<TableView Intent="Data" VerticalOptions="Fill" x:Name="tableViewSettingValues">
-			<TableRoot>
+			<TableRoot x:Name="tableRoot">
 				<TableSection Title="Configureation description">
 					<EntryCell Label="Name" Text="{Binding Name}" Placeholder="Name" Keyboard="Text" />
 					<SwitchCell Text="Default" On="{Binding Default}" />
@@ -16,7 +16,8 @@
 					<SwitchCell Text="PureBarcode" On="{Binding PureBarcode}" />
 				</TableSection>
 				<TableSection Title="REST interface">
-					<EntryCell Label="RESTUrl" Text="{Binding RESTUrl}" Placeholder="http://localhost:8080/Barcode" Keyboard="Text" />
+					<EntryCell Label="Url" Text="{Binding RESTUrl}" Placeholder="http://localhost:8080/Barcode" Keyboard="Text" />
+					<EntryCell Label="TimeOut" Text="{Binding RESTTimeout}" Placeholder="Timeout in seconds" Keyboard="Numeric" />
 				</TableSection>
 				<TableSection Title="Camera (Scanner) text">
 					<EntryCell Label="Top" Text="{Binding ScannerTopText}" Placeholder="ScannerTopText" Keyboard="Text" />

@@ -8,7 +8,7 @@ namespace ScanAndREST
     {
         public static T ToEnum<T>(this string value) where T: struct
         {
-            return (T) Enum.Parse(typeof(T), value);
+            return (T)Enum.Parse(typeof(T), value);
         }
     }
 
@@ -16,9 +16,15 @@ namespace ScanAndREST
     {
         #region Control
 
-        public string Name { get; set; }
+        public string Name { get; set; } = "Scanner"+ DateTime.Now.ToString();
 
-        public bool Default { get; set; }
+        public bool Default { get; set; }= false;
+
+        public bool Deleteable { get; set; }= true;
+
+        [JsonIgnore]
+
+        public bool Delete { get; set; }= false;
 
         #endregion
 
@@ -35,6 +41,8 @@ namespace ScanAndREST
         #endregion
 
         #region REST
+
+        public int RESTTimeout { get; set; }= 1;
 
         public string RESTUrl { get; set; }
 
