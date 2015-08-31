@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using System.Collections.Generic;
 using PCLStorage;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace ScanAndREST
 {
@@ -15,7 +16,7 @@ namespace ScanAndREST
         IFile File = null;
         string FileName = "Settings.json";
 
-        public async void Read()
+        public async Task  Read()
         {
             try
             {
@@ -30,7 +31,7 @@ namespace ScanAndREST
             if (Items == null || Items.Count == 0)
                 LoadDefaults();
 
-            Changed();
+            ChangAndRebuild();
         }
 
         public  async void Write()
@@ -44,7 +45,7 @@ namespace ScanAndREST
             catch
             {
             }
-            Changed();
+            ChangAndRebuild();
         }
 
         public void LoadDefaults()
@@ -54,21 +55,28 @@ namespace ScanAndREST
                 new SettingValues
                 {
                     Name = "Scan Only",
-                    Default = true,
+                    Default = false,
                     RESTUrl = "",
 
                 },
                 new SettingValues
                 {
                     Name = "Scan and REST TestServer",
+                    Default = false,
                     RESTUrl = "http://localhost:9876/Barcode"
+                },
+                new SettingValues
+                {
+                    Name = "OCR",
+                    Default = true,
+                    RESTUrl = "http://lwdeu089kbdk32:14261/Master/Find/Barcode"
                 }
             };
         }
 
         public Action NotifyEvent = null;
 
-        public void Changed()
+        public void ChangAndRebuild()
         {
             if (NotifyEvent != null)
                 NotifyEvent();

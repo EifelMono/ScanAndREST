@@ -8,7 +8,12 @@ namespace ScanAndREST
     {
         public App()
         {
-            Globals.Settings.Read();
+            StartUp();
+        }
+
+        public async void StartUp()
+        {
+            await Globals.Settings.Read();
             MainPage = new RootPage();
         }
 

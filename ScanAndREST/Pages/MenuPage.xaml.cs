@@ -20,7 +20,6 @@ namespace ScanAndREST
             DataTemplate cell;
             Menu = new ListView()
                 {
-                    
                     VerticalOptions = LayoutOptions.FillAndExpand,
                     BackgroundColor = Color.Transparent,
                     ItemTemplate= (cell = new DataTemplate(typeof(ImageCell))),
