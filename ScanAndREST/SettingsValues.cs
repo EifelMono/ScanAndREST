@@ -16,7 +16,7 @@ namespace ScanAndREST
         IFolder Folder = FileSystem.Current.LocalStorage;
         string FileName = "Settings.json";
 
-        public async Task  Read()
+        public async Task Read()
         {
             Items = null;
             try
@@ -38,7 +38,7 @@ namespace ScanAndREST
             ChangAndRebuild();
         }
 
-        public  async void Write()
+        public async void Write()
         {
             try
             {
@@ -50,6 +50,15 @@ namespace ScanAndREST
                 Debug.WriteLine(ex.ToString());
             }
             ChangAndRebuild();
+        }
+
+        public void Default(SettingValues settingValues)
+        {
+            if (!settingValues.Default)
+                return;
+            foreach (var item in Items)
+                if (item != settingValues)
+                    item.Default = false;
         }
 
         public void LoadDefaults()

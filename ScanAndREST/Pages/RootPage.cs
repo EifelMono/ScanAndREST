@@ -12,7 +12,7 @@ namespace ScanAndREST
         {
             MenuPage= new MenuPage();
    
-            MenuPage.Menu.ItemSelected += (sender, e) => NavigateTo(e.SelectedItem as MenuItem);
+            MenuPage.Menu.ItemSelected += (sender, e) => NavigateToMenu(e.SelectedItem as MenuItem);
 
             Master = MenuPage;
 
@@ -24,7 +24,7 @@ namespace ScanAndREST
             Detail = new NavigationPage(page);
         }
 
-        public void NavigateTo(MenuItem menu)
+        public void NavigateToMenu(MenuItem menu)
         {
             if (menu == null)
                 menu = MenuPage.MenuItems.Last();
@@ -37,6 +37,13 @@ namespace ScanAndREST
                 (displayPage as ScanPage).CurrentSettingValues = Globals.Settings.Items.FirstOrDefault((i) => i.Name == menu.Title);
 
             Detail = new NavigationPage(displayPage);
+
+            IsPresented = false;
+        }
+
+        public void NavigateToPage(Page page)
+        {
+            Detail = new NavigationPage(page);
 
             IsPresented = false;
         }

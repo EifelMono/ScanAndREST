@@ -20,6 +20,12 @@ namespace ScanAndREST.Droid
             }
         }
 
+        public void  WebOpen(string url)
+        {
+            throw new NotImplementedException();
+        }
+
+
         #endregion
     }
 }

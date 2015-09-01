@@ -21,7 +21,7 @@ namespace ScanAndREST
 
         #region IBackDoor implementation
 
-        public static void Vibrate(int time= 500)
+        public static void Vibrate(int time = 500)
         {
             Instance.Vibrate(time);
         }
@@ -32,6 +32,11 @@ namespace ScanAndREST
             {
                 return Instance.IsCameraAvailable;
             }
+        }
+
+        public static void WebOpen(string url)
+        {
+            Instance.WebOpen(url);
         }
 
         #endregion

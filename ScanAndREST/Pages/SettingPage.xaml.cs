@@ -49,7 +49,7 @@ namespace ScanAndREST
                         Text = "Delete",
                         BackgroundColor = Color.Red
                     };
-                    button.Image = "Icons/Minus.png";
+                    button.Image = "Icons/Minus@3x.png";
 
                     button.Clicked += async (object sender, EventArgs e) =>
                     {

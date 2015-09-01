@@ -1,6 +1,7 @@
 ﻿using System;
 using AudioToolbox;
 using UIKit;
+using Foundation;
 
 [assembly: Xamarin.Forms.Dependency(typeof(ScanAndREST.iOS.Backdoor))]
 
@@ -28,6 +29,11 @@ namespace ScanAndREST.iOS
                 return UIImagePickerController.IsCameraDeviceAvailable(UIImagePickerControllerCameraDevice.Rear)
                 || UIImagePickerController.IsCameraDeviceAvailable(UIImagePickerControllerCameraDevice.Front);
             }
+        }
+
+        public void  WebOpen(string url)
+        {
+            UIApplication.SharedApplication.OpenUrl (new NSUrl(url));
         }
 
         #endregion

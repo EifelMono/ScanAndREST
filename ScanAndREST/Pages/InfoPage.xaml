@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ScanAndREST.InfoPage" Title="ScanToREST">
+	<StackLayout>
+		<Label Text="" />
+		<Label Text="REST Server Url format http://server:port/Abcdefghi?Barcode=barcode" />
+		<Label Text="Locahost sample http://localhost:9876/Scan?Barcode=barcode" />
+		<Label Text="" />
+		<Label Text="More info about the code can be found here" />
+		<Label x:Name="labelHithub" Text="https://github.com/EifelMono/ScanAndREST" TextColor="Blue"/>
+	</StackLayout>
+</ContentPage>

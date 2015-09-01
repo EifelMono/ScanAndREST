@@ -1,5 +1,4 @@
-﻿#define Simulation
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -59,21 +58,16 @@ namespace ScanAndREST
         {
             if (circleImageStart.BorderColor == Color.Red)
                 return;
-            string Barcode = "";
+  
             labelBarcode.Text = "";
             labelResult.Text = "";
+            string Barcode = "eifelmono";
+
             circleImageStart.BorderColor = Color.Red;
             try
             {
-                #if Simulation
-                if (true)
-                #else
                 if (Backdoor.IsCameraAvailable)
-                #endif
                 {
-                    #if Simulation
-                    Barcode = "S i m u l a t i o n";
-                    #else
                     if (scanner == null)
                         scanner = new MobileBarcodeScanner();
                     scanner.TopText = CurrentSettingValues.ScannerTopText;
@@ -95,27 +89,24 @@ namespace ScanAndREST
                     if (result == null)
                         return; 
                     Barcode = result.Text;
-                    #endif
-                    labelBarcode.Text = string.Format("Barcode={0}", Barcode);
-                    Task.Run(() =>
-                        {
-                            Backdoor.Vibrate();
-                        });
                 }
-                else
-                    labelBarcode.Text = "No camera avaiable";
+                labelBarcode.Text = Barcode;
+
+                Task.Run(() =>
+                    {
+                        Backdoor.Vibrate();
+                    });
+
                 if (!string.IsNullOrEmpty(CurrentSettingValues.RESTUrlBase))
                     try
                     {
                         circleImageStart.Source = ImageSource.FromResource("ScanAndREST.Resources.Icons.ScanAndRESTResult.png");
                         var client = new RestClient(CurrentSettingValues.RESTUrlBase);
                         client.Timeout = new TimeSpan(0, 0, CurrentSettingValues.RESTTimeout);
-
                         RestRequest request = new RestRequest(CurrentSettingValues.RESTUrlResource, System.Net.Http.HttpMethod.Get);
                         request.AddParameter("Barcode", Barcode);
                         var response = (await client.Execute(request));
-                        var result = BodyEncoding.GetString(response.RawBytes, 0, response.RawBytes.Length);
-                        labelResult.Text = string.Format("Result={0}", result);
+                        labelResult.Text = BodyEncoding.GetString(response.RawBytes, 0, response.RawBytes.Length);
                     }
                     catch
                     {
@@ -160,8 +151,9 @@ namespace ScanAndREST
             {
                 Globals.Settings.Items.Remove(CurrentSettingValues);
                 Globals.Settings.ChangAndRebuild();
-                (App.Current.MainPage as RootPage).NavigateTo(null);
+                (App.Current.MainPage as RootPage).NavigateToMenu(null);
             }
+            Globals.Settings.Default(CurrentSettingValues);
             Globals.Settings.Write();
         }
 

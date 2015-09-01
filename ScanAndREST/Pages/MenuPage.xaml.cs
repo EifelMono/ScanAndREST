@@ -9,7 +9,8 @@ namespace ScanAndREST
     public partial class MenuPage : ContentPage
     {
         public ListView Menu { get; set; }
-        public List<MenuItem> MenuItems { get; set;}
+
+        public List<MenuItem> MenuItems { get; set; }
 
         public MenuPage()
         {
@@ -32,19 +33,18 @@ namespace ScanAndREST
 
             Globals.Settings.NotifyEvent = Changes;
 
-            var button = new Button();
-            button.Text = "";
-            button.VerticalOptions = LayoutOptions.Center;
-            button.Image = "Icons/Plus.png";
-            button.Clicked += (object sender, EventArgs e) =>
+            var buttonAdd = new Button();
+            buttonAdd.VerticalOptions = LayoutOptions.Center;
+            buttonAdd.Image = "Icons/Plus@3x.png";
+            buttonAdd.Clicked += (object sender, EventArgs e) =>
             {
-                    Globals.Settings.Items.Add(new SettingValues());
-                    Globals.Settings.ChangAndRebuild();
-                    (App.Current.MainPage as RootPage).NavigateTo(null);
-                    Globals.Settings.Write();
+                Globals.Settings.Items.Add(new SettingValues());
+                Globals.Settings.ChangAndRebuild();
+                (App.Current.MainPage as RootPage).NavigateToMenu(null);
+                Globals.Settings.Write();
             };
 
-            var menuLabel = new ContentView
+            var menuHeader = new ContentView
             {
                 Padding = new Thickness(10, 36, 0, 5),
                 Content = new StackLayout
@@ -52,17 +52,41 @@ namespace ScanAndREST
                     Orientation = StackOrientation.Horizontal,
                     Children =
                     {
+                        buttonAdd,
                         new Label
                         {
                             TextColor = Color.FromHex("AAAAAA"),
                             Text = "Select your configuration", 
                             VerticalOptions = LayoutOptions.Center,
                         },
+                    }
+                }
+            };
+
+            var buttonInfo = new Button();
+            buttonInfo.VerticalOptions = LayoutOptions.Center;
+            buttonInfo.Image = "Icons/Info@3x.png";
+            buttonInfo.Clicked += (object sender, EventArgs e) =>
+            {
+                    (App.Current.MainPage as RootPage).NavigateToPage(new InfoPage());
+            };
+            
+
+            var menuFooter = new ContentView
+            {
+                Padding = new Thickness(10, 5, 0, 5),
+                Content = new StackLayout
+                {
+                    Orientation = StackOrientation.Horizontal,
+                    Children =
+                    {
+                        buttonInfo,
                         new Label
                         {
-                            Text = " ", 
+                            TextColor = Color.FromHex("AAAAAA"),
+                            Text = "ScanAndREST ...", 
+                            VerticalOptions = LayoutOptions.Center,
                         },
-                        button,
                     }
                 }
             };
@@ -72,9 +96,9 @@ namespace ScanAndREST
                 Spacing = 0, 
                 VerticalOptions = LayoutOptions.FillAndExpand
             };
-            layout.Children.Add(menuLabel);
+            layout.Children.Add(menuHeader);
             layout.Children.Add(Menu);
-
+            layout.Children.Add(menuFooter);
             Content = layout;
         }
 

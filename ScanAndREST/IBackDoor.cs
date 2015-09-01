@@ -8,6 +8,7 @@ namespace ScanAndREST
     {
         bool IsCameraAvailable { get;}
         void Vibrate(int time);
+        void WebOpen(string url);
     }
 }
 

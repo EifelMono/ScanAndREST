@@ -195,5 +195,8 @@
     <BundleResource Include="Resources\Icons\Minus.png" />
     <BundleResource Include="Resources\Icons\Minus%402x.png" />
     <BundleResource Include="Resources\Icons\Minus%403x.png" />
+    <BundleResource Include="Resources\Icons\Info.png" />
+    <BundleResource Include="Resources\Icons\Info%402x.png" />
+    <BundleResource Include="Resources\Icons\Info%403x.png" />
   </ItemGroup>
 </Project>
