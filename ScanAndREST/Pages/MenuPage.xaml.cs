@@ -56,7 +56,7 @@ namespace ScanAndREST
                         new Label
                         {
                             TextColor = Color.FromHex("AAAAAA"),
-                            Text = "Select your configuration", 
+                            Text = "Select your configuration ...", 
                             VerticalOptions = LayoutOptions.Center,
                         },
                     }

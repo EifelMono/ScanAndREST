@@ -10,7 +10,7 @@ namespace ScanAndREST
         public InfoPage()
         {
             InitializeComponent();
-            labelHithub.GestureRecognizers.Add(new TapGestureRecognizer
+            labelGitHub.GestureRecognizers.Add(new TapGestureRecognizer
                 {
                     Command = new Command((o) =>
                         {

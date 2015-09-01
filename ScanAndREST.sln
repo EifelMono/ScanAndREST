@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanAndREST.Droid", "Droid\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanAndRESTServer", "ScanAndRESTServer\ScanAndRESTServer.csproj", "{B27996CC-1D84-4D8A-B7C2-1CADDC6C939B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2255534B-DFF9-4E07-9669-D6AA0A340A43}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		LICENSE = LICENSE
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,5 +73,7 @@ Global
 		{E7D45B9B-AF58-460B-B0FE-2CE68B2AE143}.Release|iPhone.Build.0 = Release|Any CPU
 		{E7D45B9B-AF58-460B-B0FE-2CE68B2AE143}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{E7D45B9B-AF58-460B-B0FE-2CE68B2AE143}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 EndGlobal

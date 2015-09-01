@@ -79,18 +79,6 @@ namespace ScanAndREST
                     Default = false,
                     RESTUrl = "http://localhost:9876/Scan"
                 },
-                new SettingValues
-                {
-                    Name = "example.org",
-                    Default = false,
-                    RESTUrl = "http://example.org"
-                },
-                new SettingValues
-                {
-                    Name = "OCR Rowa",
-                    Default = true,
-                    RESTUrl = "http://lwdeu089kbdk32:14261/Master/Find"
-                },
             };
         }
 
