@@ -3,7 +3,7 @@
 	<StackLayout Padding="10">
 		<Label Text="" />
 		<Label Text="REST Server (GET) Url format" />
-		<Label Text="  http://server:port/Abc?Barcode=barcode"  FontSize="12"/>
+		<Label Text="  http://example.com:port/Abc?Barcode=barcode"  FontSize="12"/>
 		<Label Text="" />
 		<Label Text="Locahost sample" />
 		<Label Text="  http://localhost:9876/Scan?Barcode=barcode" FontSize="12" />

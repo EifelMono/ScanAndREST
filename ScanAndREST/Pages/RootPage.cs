@@ -8,9 +8,10 @@ namespace ScanAndREST
     public class RootPage : MasterDetailPage
     {
         MenuPage MenuPage;
+
         public RootPage()
         {
-            MenuPage= new MenuPage();
+            MenuPage = new MenuPage();
    
             MenuPage.Menu.ItemSelected += (sender, e) => NavigateToMenu(e.SelectedItem as MenuItem);
 
@@ -19,8 +20,14 @@ namespace ScanAndREST
             Globals.Settings.ChangAndRebuild();
 
             var page = new ScanPage();
-            page.CurrentSettingValues = Globals.Settings.Items.FirstOrDefault((s) => s.Default);
-
+            var useSettings = Globals.Settings.Items.FirstOrDefault((s) => s.Default);
+            if (useSettings == null && Globals.Settings.Items.Count > 0)
+            {
+                useSettings = Globals.Settings.Items[0];
+                useSettings.Default = true;
+                Globals.Settings.Write();
+            }
+            page.CurrentSettingValues = useSettings;
             Detail = new NavigationPage(page);
         }
 

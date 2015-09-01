@@ -4,7 +4,7 @@
 		<TableView Intent="Data" VerticalOptions="Fill" x:Name="tableViewSettingValues">
 			<TableRoot x:Name="tableRoot">
 				<TableSection Title="Configureation description">
-					<EntryCell Label="Name" Text="{Binding Name}" Placeholder="Name" Keyboard="Text" />
+					<EntryCell Label="Name" Text="{Binding Name}" Placeholder="Name" Keyboard="Default" />
 					<SwitchCell Text="Default" On="{Binding Default}" />
 				</TableSection>
 				<TableSection Title="Barcode formats" x:Name="tableSectionBarcodeFormats">
@@ -16,14 +16,14 @@
 					<SwitchCell Text="PureBarcode" On="{Binding PureBarcode}" />
 				</TableSection>
 				<TableSection Title="REST interface">
-					<EntryCell Label="Url" Text="{Binding RESTUrl}" Placeholder="http://localhost:8080/Barcode" Keyboard="Text" />
+					<EntryCell Label="Url" Text="{Binding RESTUrl}" Placeholder="http://localhost:8080/Barcode" Keyboard="Default" />
 					<EntryCell Label="TimeOut" Text="{Binding RESTTimeout}" Placeholder="Timeout in seconds" Keyboard="Numeric" />
 				</TableSection>
 				<TableSection Title="Camera (Scanner) text">
-					<EntryCell Label="Top" Text="{Binding ScannerTopText}" Placeholder="ScannerTopText" Keyboard="Text" />
-					<EntryCell Label="Bottom" Text="{Binding ScannerBottomText}" Placeholder="ScannerBottomText" Keyboard="Text" />
-					<EntryCell Label="Cancel" Text="{Binding ScannerCancelText}" Placeholder="ScannerCancelText" Keyboard="Text" />
-					<EntryCell Label="Flash" Text="{Binding ScannerFlashText}" Placeholder="ScannerFlashText" Keyboard="Text" />
+					<EntryCell Label="Top" Text="{Binding ScannerTopText}" Placeholder="ScannerTopText" Keyboard="Default" />
+					<EntryCell Label="Bottom" Text="{Binding ScannerBottomText}" Placeholder="ScannerBottomText" Keyboard="Default" />
+					<EntryCell Label="Cancel" Text="{Binding ScannerCancelText}" Placeholder="ScannerCancelText" Keyboard="Default" />
+					<EntryCell Label="Flash" Text="{Binding ScannerFlashText}" Placeholder="ScannerFlashText" Keyboard="Default" />
 				</TableSection>
 			</TableRoot>
 		</TableView>

@@ -79,6 +79,12 @@ namespace ScanAndREST
                     Default = false,
                     RESTUrl = "http://localhost:9876/Scan"
                 },
+                new SettingValues
+                {
+                    Name = "http://httpbin.org/get",
+                    Default = false,
+                    RESTUrl = "http://httpbin.org/get"
+                },
             };
         }
 

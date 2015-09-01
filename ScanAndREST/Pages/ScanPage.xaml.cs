@@ -147,6 +147,7 @@ namespace ScanAndREST
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            Title = CurrentSettingValues.Name;
             if (CurrentSettingValues.Delete)
             {
                 Globals.Settings.Items.Remove(CurrentSettingValues);
