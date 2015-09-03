@@ -4,8 +4,8 @@
 		<TableView Intent="Data" VerticalOptions="Fill" x:Name="tableViewSettingValues">
 			<TableRoot x:Name="tableRoot">
 				<TableSection Title="Configureation description">
-					<SwitchCell Text="Default" On="{Binding Default}" />
 					<EntryCell Label="Name" Text="{Binding Name}" Placeholder="Name" />
+					<SwitchCell Text="Default" On="{Binding Default}" />
 				</TableSection>
 				<TableSection Title="Barcode formats" x:Name="tableSectionBarcodeFormats">
 				</TableSection>
