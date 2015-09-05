@@ -42,7 +42,23 @@ namespace ScanAndREST
 
         #region REST
 
-        public int RESTTimeout { get; set; }= 1;
+        [JsonProperty("RESTTimeout")]
+        protected int m_RESTTimeout { get; set; }= 1;
+
+        [JsonIgnore]
+        public int RESTTimeout
+        {
+            get
+            {
+                if (m_RESTTimeout <= 0)
+                    m_RESTTimeout = 1;
+                return m_RESTTimeout;
+            }
+            set
+            {
+                m_RESTTimeout = value;
+            }
+        }
 
         public string RESTUrl { get; set; }
 

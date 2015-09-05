@@ -67,8 +67,8 @@ namespace ScanAndREST
             {
                 new SettingValues
                 {
-                    Name = "Scan Only",
-                    Default = false,
+                    Name = "xScan Only",
+                    Default = true,
                     Deleteable = false,
                     RESTUrl = "",
 
