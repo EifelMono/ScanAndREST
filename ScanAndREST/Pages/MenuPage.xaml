@@ -1,5 +1,57 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ScanAndREST.MenuPage">
-	<ContentPage.Content>
-	</ContentPage.Content>
+	<ContentPage.Padding>
+		<OnPlatform x:TypeArguments="Thickness">
+			<OnPlatform.iOS>
+        0, 20, 0, 0
+      </OnPlatform.iOS>
+			<OnPlatform.Android>
+        0, 0, 0, 0
+      </OnPlatform.Android>
+			<OnPlatform.WinPhone>
+        0, 0, 0, 0
+      </OnPlatform.WinPhone>
+		</OnPlatform>
+	</ContentPage.Padding>
+	<Grid Padding="0, 0, 0, 0" BackgroundColor="White">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid Grid.Row="0" Padding="5, 0, 0, 0" ColumnSpacing="10" RowSpacing="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="AUTO" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Image Grid.Column="0" MinimumHeightRequest="24" MinimumWidthRequest="24" Source="Icons/ScanAndREST Transparent.png" Aspect="AspectFit" VerticalOptions="Center" />
+			<Label Grid.Column="1" Text="Scan And REST" VerticalOptions="Center" />
+		</Grid>
+		<ListView Grid.Row="1" x:Name="listViewMenu" BackgroundColor="White" ItemsSource="{Binding MenuItems}" >
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell x:Name="viewCellItem">
+						<ContentView>
+							<Grid Padding="5, 0, 0, 0" ColumnSpacing="10" RowSpacing="0" x:Name="gridItem">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="32" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+								<Image MinimumHeightRequest="24" MinimumWidthRequest="24" Grid.Column="0" Source="{Binding IconSource}" VerticalOptions="Center"  HorizontalOptions="Center"/>
+								<Label Grid.Column="1" Text="{Binding Title}" VerticalOptions="Center" />
+							</Grid>
+						</ContentView>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+		<Grid Grid.Row="2" Padding="5, 0, 0, 5" ColumnSpacing="10" RowSpacing="0" x:Name="gridInfo">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="AUTO" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Image Grid.Column="0" MinimumHeightRequest="24" MinimumWidthRequest="24" Source="Icons/Info.png" Aspect="AspectFit" VerticalOptions="Center" />
+			<Label Grid.Column="1" Text="Info" VerticalOptions="Center" />
+		</Grid>
+	</Grid>
 </ContentPage>

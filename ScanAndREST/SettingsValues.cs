@@ -24,7 +24,8 @@ namespace ScanAndREST
                 if (await Folder.CheckExistsAsync(FileName) == ExistenceCheckResult.FileExists)
                 {
                     var File = await Folder.GetFileAsync(FileName);
-                    Items = JsonConvert.DeserializeObject<List<SettingValues>>(await File.ReadAllTextAsync());
+                    var itemsAsString= await File.ReadAllTextAsync();
+                    Items = JsonConvert.DeserializeObject<List<SettingValues>>(itemsAsString);
                 }
             }
             catch (Exception ex)
@@ -67,11 +68,10 @@ namespace ScanAndREST
             {
                 new SettingValues
                 {
-                    Name = "xScan Only",
+                    Name = "Scan Only",
                     Default = true,
                     Deleteable = false,
                     RESTUrl = "",
-
                 },
                 new SettingValues
                 {

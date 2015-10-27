@@ -1,6 +1,8 @@
 ﻿using System;
 
 using Xamarin.Forms;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace ScanAndREST
 {
@@ -8,12 +10,6 @@ namespace ScanAndREST
     {
         public App()
         {
-            StartUp();
-        }
-
-        public async void StartUp()
-        {
-            await Globals.Settings.Read();
             MainPage = new RootPage();
         }
 

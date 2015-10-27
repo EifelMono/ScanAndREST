@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using System.IO;
+using System.Reflection;
 
 namespace ScanAndREST
 {
@@ -10,14 +12,34 @@ namespace ScanAndREST
         public InfoPage()
         {
             InitializeComponent();
-            labelGitHub.GestureRecognizers.Add(new TapGestureRecognizer
+
+            BindingContext = this;
+            WebView d = new WebView();
+
+            webView.Navigating += (object sender, WebNavigatingEventArgs e) =>
+            {
+                int i = 0;
+                if (Uri.IsWellFormedUriString(e.Url, UriKind.Absolute) && !e.Url.StartsWith("file"))
                 {
-                    Command = new Command((o) =>
-                        {
-                            Backdoor.WebOpen("https://github.com/EifelMono/ScanAndREST");
-                        })
-                });
+                    Device.OpenUri(new Uri(e.Url));
+                    e.Cancel = true;
+                }
+            };
+        }
+
+        public HtmlWebViewSource InfoHtml
+        {
+            get
+            {
+                var assembly = typeof(InfoPage).GetTypeInfo().Assembly;
+                Stream stream = assembly.GetManifestResourceStream("ScanAndREST.Resources.Html.Info.html");
+                StreamReader reader = new StreamReader(stream);
+                string htmlString = reader.ReadToEnd();
+
+                var htmlSource = new HtmlWebViewSource();
+                htmlSource.Html = htmlString;
+                return htmlSource;
+            }
         }
     }
 }
-

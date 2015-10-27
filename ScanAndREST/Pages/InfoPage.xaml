@@ -1,17 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ScanAndREST.InfoPage" Title="ScanToREST">
-	<StackLayout Padding="10">
-		<Label Text="" />
-		<Label Text="REST Server (GET) Url format" />
-		<Label Text="  http://example.com:port/Abc?Barcode=barcode"  FontSize="12"/>
-		<Label Text="" />
-		<Label Text="Locahost sample" />
-		<Label Text="  http://localhost:9876/Scan?Barcode=barcode" FontSize="12" />
-		<Label Text="" />
-		<Label Text="" />
-		<Label Text="" />
-		<Label Text="More info about the code on GitHub" />
-		<Label Text="" />
-		<Label x:Name="labelGitHub" Text="https://github.com/EifelMono/ScanAndREST" TextColor="Blue" />
-	</StackLayout>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ScanAndREST.InfoPage" Title="ScanAndREST Infos">
+	<Grid Padding="1">
+		<WebView x:Name= "webView" Source="{Binding InfoHtml}" />
+	</Grid> 
 </ContentPage>

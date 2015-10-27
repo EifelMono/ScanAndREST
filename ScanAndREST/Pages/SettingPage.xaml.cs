@@ -53,10 +53,10 @@ namespace ScanAndREST
 
                     button.Clicked += async (object sender, EventArgs e) =>
                     {
-                            if (await DisplayAlert("Query", string.Format("Delete {0}", SettingValues.Name), "Ok", "Cancel"))
+                        if (await DisplayAlert("Query", string.Format("Delete {0}", SettingValues.Name), "Ok", "Cancel"))
                         {
                             m_SettingValues.Delete = true;
-                            Navigation.PopAsync(true); 
+                            await Navigation.PopAsync(true); 
                         }
                     };
 

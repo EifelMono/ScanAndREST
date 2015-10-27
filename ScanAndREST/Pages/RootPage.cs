@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace ScanAndREST
 {
@@ -13,13 +13,31 @@ namespace ScanAndREST
         {
             MenuPage = new MenuPage();
    
-            MenuPage.Menu.ItemSelected += (sender, e) => NavigateToMenu(e.SelectedItem as MenuItem);
+            MenuPage.OnMenuSelected += (menuItem) => NavigateToMenu(menuItem);
+            MenuPage.IsEnabled = false;
 
             Master = MenuPage;
+        
+            var page = new ScanPage();
+            LoadSettings(page);
+           
+            Detail = new NavigationPage(new ContentPage {
+                Content= new Grid {
+                    Children= {
+                        new ActivityIndicator{
+                            IsRunning= true
+                        }
+                    }
+                }
+            });
+            NavigationPage.SetHasNavigationBar(Detail, false);
+        }
 
+        async void LoadSettings(ScanPage page)
+        {
+            await Globals.Settings.Read();
             Globals.Settings.ChangAndRebuild();
 
-            var page = new ScanPage();
             var useSettings = Globals.Settings.Items.FirstOrDefault((s) => s.Default);
             if (useSettings == null && Globals.Settings.Items.Count > 0)
             {
@@ -27,14 +45,15 @@ namespace ScanAndREST
                 useSettings.Default = true;
                 Globals.Settings.Write();
             }
-            page.CurrentSettingValues = useSettings;
+            page.CurrentSettingValues = useSettings; 
             Detail = new NavigationPage(page);
+            NavigationPage.SetHasNavigationBar(Detail, true);
         }
 
         public void NavigateToMenu(MenuItem menu)
         {
             if (menu == null)
-                menu = MenuPage.MenuItems.Last();
+                menu = MenuPage.Last();
             
             Page displayPage = (Page)Activator.CreateInstance(menu.TargetType);
 

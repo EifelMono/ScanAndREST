@@ -31,10 +31,11 @@ namespace ScanAndREST.iOS
             }
         }
 
-        public void  WebOpen(string url)
+        public void WebOpen(string url)
         {
-            UIApplication.SharedApplication.OpenUrl (new NSUrl(url));
+            UIApplication.SharedApplication.OpenUrl(new NSUrl(url));
         }
+            
 
         #endregion
     }

@@ -7,18 +7,17 @@ using ZXing.Mobile;
 using System.Threading.Tasks;
 using RestSharp.Portable;
 using System.Diagnostics;
+using RestSharp.Portable.HttpClient;
 
 namespace ScanAndREST
 {
     public partial class ScanPage : ContentPage
     {
-        ToolbarItem toolbarItemSettings = null;
-
         public ScanPage()
         {
             InitializeComponent();
 
-            ToolbarItems.Add(toolbarItemSettings = new ToolbarItem("change", "Icons/Settings.png", new Action(() =>
+            ToolbarItems.Add(new ToolbarItem("change", "Icons/Settings.png", new Action(() =>
                         {
                             Navigation.PushAsync(new SettingPage { SettingValues = CurrentSettingValues }, true);
                         })));
@@ -103,7 +102,7 @@ namespace ScanAndREST
                         circleImageStart.Source = ImageSource.FromResource("ScanAndREST.Resources.Icons.ScanAndRESTResult.png");
                         var client = new RestClient(CurrentSettingValues.RESTUrlBase);
                         client.Timeout = new TimeSpan(0, 0, CurrentSettingValues.RESTTimeout);
-                        RestRequest request = new RestRequest(CurrentSettingValues.RESTUrlResource, System.Net.Http.HttpMethod.Get);
+                        RestRequest request = new RestRequest(CurrentSettingValues.RESTUrlResource, RestSharp.Portable.Method.GET);
                         request.AddParameter("Barcode", Barcode);
                         var response = (await client.Execute(request));
                         labelResult.Text = BodyEncoding.GetString(response.RawBytes, 0, response.RawBytes.Length);
