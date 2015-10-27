@@ -64,7 +64,7 @@ namespace ScanAndREST
             }
             MenuItems.Add(new MenuItem
                 {
-                    IconSource = "Icons/plus.png",
+                    IconSource = "Icons/Plus.png",
                     Title = "Add",
                     Add = true
                 });
