@@ -91,10 +91,12 @@ namespace ScanAndREST
                 }
                 labelBarcode.Text = Barcode;
 
+                #pragma warning disable 4014
                 Task.Run(() =>
                     {
                         Backdoor.Vibrate();
                     });
+                #pragma warning restore 4014
 
                 if (!string.IsNullOrEmpty(CurrentSettingValues.RESTUrlBase))
                     try

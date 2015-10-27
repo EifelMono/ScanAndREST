@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ScanAndREST.MenuPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ScanAndREST.MenuPage"  BackgroundColor="Silver">
 	<ContentPage.Padding>
 		<OnPlatform x:TypeArguments="Thickness">
 			<OnPlatform.iOS>
@@ -13,19 +13,19 @@
       </OnPlatform.WinPhone>
 		</OnPlatform>
 	</ContentPage.Padding>
-	<Grid Padding="0, 0, 0, 0" BackgroundColor="White">
+	<Grid Padding="0, 0, 0, 0" BackgroundColor="Transparent" RowSpacing="0" ColumnSpacing="0">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
+			<RowDefinition Height="45" />
 			<RowDefinition Height="*" />
-			<RowDefinition Height="Auto" />
+			<RowDefinition Height="35" />
 		</Grid.RowDefinitions>
-		<Grid Grid.Row="0" Padding="5, 0, 0, 0" ColumnSpacing="10" RowSpacing="0">
+		<Grid Grid.Row="0" Padding="10, 0, 0, 0" ColumnSpacing="10" RowSpacing="0" BackgroundColor="Transparent" VerticalOptions="Center">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="AUTO" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
 			<Image Grid.Column="0" MinimumHeightRequest="24" MinimumWidthRequest="24" Source="Icons/ScanAndREST Transparent.png" Aspect="AspectFit" VerticalOptions="Center" />
-			<Label Grid.Column="1" Text="Scan And REST" VerticalOptions="Center" />
+			<Label Grid.Column="1" Text="Scan And REST" VerticalOptions="Center"  TextColor="White"/>
 		</Grid>
 		<ListView Grid.Row="1" x:Name="listViewMenu" BackgroundColor="White" ItemsSource="{Binding MenuItems}" >
 			<ListView.ItemTemplate>
@@ -45,12 +45,12 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
-		<Grid Grid.Row="2" Padding="5, 0, 0, 5" ColumnSpacing="10" RowSpacing="0" x:Name="gridInfo">
+		<Grid Grid.Row="2" Padding="10, 0, 0, 0" ColumnSpacing="10" RowSpacing="0" x:Name="gridInfo" BackgroundColor="White">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="AUTO" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
-			<Image Grid.Column="0" MinimumHeightRequest="24" MinimumWidthRequest="24" Source="Icons/Info.png" Aspect="AspectFit" VerticalOptions="Center" />
+			<Image Grid.Column="0" MinimumHeightRequest="24" MinimumWidthRequest="24" Source="Icons/Info.png" Aspect="AspectFit" VerticalOptions="CenterAndExpand" />
 			<Label Grid.Column="1" Text="Info" VerticalOptions="Center" />
 		</Grid>
 	</Grid>

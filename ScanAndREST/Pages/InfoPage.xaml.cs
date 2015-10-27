@@ -14,11 +14,9 @@ namespace ScanAndREST
             InitializeComponent();
 
             BindingContext = this;
-            WebView d = new WebView();
 
             webView.Navigating += (object sender, WebNavigatingEventArgs e) =>
             {
-                int i = 0;
                 if (Uri.IsWellFormedUriString(e.Url, UriKind.Absolute) && !e.Url.StartsWith("file"))
                 {
                     Device.OpenUri(new Uri(e.Url));
