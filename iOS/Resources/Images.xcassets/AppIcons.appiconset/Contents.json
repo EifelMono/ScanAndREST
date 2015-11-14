@@ -116,8 +116,14 @@
     },
     {
       "filename": "ScanAndREST.120x120.png",
-      "size": "120x120",
-      "scale": "1x",
+      "size": "60x60",
+      "scale": "2x",
+      "idiom": "car"
+    },
+    {
+      "filename": "ScanAndREST.180x180.png",
+      "size": "60x60",
+      "scale": "3x",
       "idiom": "car"
     },
     {
