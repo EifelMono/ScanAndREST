@@ -50,7 +50,7 @@ namespace ScanAndREST
             NavigationPage.SetHasNavigationBar(Detail, true);
         }
 
-        public void NavigateToMenu(MenuItem menu)
+		public Page NavigateToMenu(MenuItem menu)
         {
             if (menu == null)
                 menu = MenuPage.Last();
@@ -65,6 +65,8 @@ namespace ScanAndREST
             Detail = new NavigationPage(displayPage);
 
             IsPresented = false;
+
+			return displayPage;
         }
 
         public void NavigateToPage(Page page)

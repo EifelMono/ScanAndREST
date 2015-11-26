@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ScanAndREST.MenuPage"  BackgroundColor="Silver">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ScanAndREST.MenuPage" BackgroundColor="Silver">
 	<ContentPage.Padding>
 		<OnPlatform x:TypeArguments="Thickness">
 			<OnPlatform.iOS>
@@ -25,19 +25,23 @@
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
 			<Image Grid.Column="0" MinimumHeightRequest="24" MinimumWidthRequest="24" Source="Icons/ScanAndREST Transparent.png" Aspect="AspectFit" VerticalOptions="Center" />
-			<Label Grid.Column="1" Text="Scan And REST" VerticalOptions="Center"  TextColor="White"/>
+			<Label Grid.Column="1" Text="Scan And REST" VerticalOptions="Center" TextColor="White" />
 		</Grid>
-		<ListView Grid.Row="1" x:Name="listViewMenu" BackgroundColor="White" ItemsSource="{Binding MenuItems}" >
+		<ListView Grid.Row="1" x:Name="listViewMenu" BackgroundColor="White" ItemsSource="{Binding MenuItems}">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<ViewCell x:Name="viewCellItem">
+						<ViewCell.ContextActions>
+							<MenuItem Text="Default" CommandParameter="{Binding .}" Clicked="viewCellItemContextActionDefaultClicked"/>
+							<MenuItem Text="Delete" IsDestructive="True" CommandParameter="{Binding .}" Clicked="viewCellItemContextActionDeleteClicked"/>
+						</ViewCell.ContextActions>
 						<ContentView>
 							<Grid Padding="5, 0, 0, 0" ColumnSpacing="10" RowSpacing="0" x:Name="gridItem">
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="32" />
 									<ColumnDefinition Width="*" />
 								</Grid.ColumnDefinitions>
-								<Image MinimumHeightRequest="24" MinimumWidthRequest="24" Grid.Column="0" Source="{Binding IconSource}" VerticalOptions="Center"  HorizontalOptions="Center"/>
+								<Image MinimumHeightRequest="24" MinimumWidthRequest="24" Grid.Column="0" Source="{Binding IconSource}" VerticalOptions="Center" HorizontalOptions="Center" />
 								<Label Grid.Column="1" Text="{Binding Title}" VerticalOptions="Center" />
 							</Grid>
 						</ContentView>
