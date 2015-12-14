@@ -3,7 +3,9 @@
 using Xamarin.Forms;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace ScanAndREST
 {
     public class App : Application

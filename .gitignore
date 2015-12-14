@@ -10,6 +10,7 @@ Resource.designer.cs
 # User-specific files
 *.suo
 *.user
+*.bak
 *.sln.docstates
 
 # Build results
