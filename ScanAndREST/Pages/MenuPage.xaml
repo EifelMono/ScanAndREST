@@ -24,7 +24,7 @@
 				<ColumnDefinition Width="AUTO" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
-			<Image Grid.Column="0" MinimumHeightRequest="24" MinimumWidthRequest="24" Source="Icons/ScanAndREST Transparent.png" Aspect="AspectFit" VerticalOptions="Center" />
+			<Image Grid.Column="0" MinimumHeightRequest="24" MinimumWidthRequest="24" Source="Icons/home.png" Aspect="AspectFit" VerticalOptions="Center" />
 			<Label Grid.Column="1" Text="Scan And REST" VerticalOptions="Center" TextColor="White" />
 		</Grid>
 		<ListView Grid.Row="1" x:Name="listViewMenu" BackgroundColor="White" ItemsSource="{Binding MenuItems}">

@@ -20,6 +20,8 @@ namespace ScanAndREST
 
         public bool Default { get; set; }= false;
 
+        public bool BarcodeFormatVisible { get; set; }= false;
+
         public bool Deleteable { get; set; }= true;
 
         [JsonIgnore]

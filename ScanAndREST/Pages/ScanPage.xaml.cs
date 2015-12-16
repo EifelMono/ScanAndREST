@@ -59,8 +59,10 @@ namespace ScanAndREST
                 return;
   
             labelBarcode.Text = "";
+            labelBarcodeFormat.Text = "";
             labelResult.Text = "";
             string Barcode = "eifelmono";
+            string BarcodeFormat = "";
 
             circleImageStart.BorderColor = Color.Red;
             try
@@ -88,8 +90,11 @@ namespace ScanAndREST
                     if (result == null)
                         return; 
                     Barcode = result.Text;
+                    if (CurrentSettingValues.BarcodeFormatVisible)
+                        BarcodeFormat = result.BarcodeFormat.ToString();
                 }
                 labelBarcode.Text = Barcode;
+                labelBarcodeFormat.Text = BarcodeFormat;
 
                 #pragma warning disable 4014
                 Task.Run(() =>
@@ -144,7 +149,6 @@ namespace ScanAndREST
 
         #endregion
 
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -158,12 +162,6 @@ namespace ScanAndREST
             Globals.Settings.Default(CurrentSettingValues);
             Globals.Settings.Write();
         }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-        }
-
     }
 }
 

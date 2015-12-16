@@ -6,6 +6,7 @@
 				<TableSection Title="Configuration description">
 					<EntryCell Label="Name" Text="{Binding Name}" Placeholder="Name" />
 					<SwitchCell Text="Default" On="{Binding Default}" />
+					<SwitchCell Text="BarcodeFormat visible" On="{Binding BarcodeFormatVisible}" />
 				</TableSection>
 				<TableSection Title="Barcode formats" x:Name="tableSectionBarcodeFormats">
 				</TableSection>
