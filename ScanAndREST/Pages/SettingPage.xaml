@@ -3,7 +3,7 @@
 	<StackLayout>
 		<TableView Intent="Data" VerticalOptions="Fill">
 			<TableRoot x:Name="tableRoot">
-				<TableSection Title="Configureation description">
+				<TableSection Title="Configuration description">
 					<EntryCell Label="Name" Text="{Binding Name}" Placeholder="Name" />
 					<SwitchCell Text="Default" On="{Binding Default}" />
 				</TableSection>

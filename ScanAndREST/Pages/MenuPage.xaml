@@ -3,14 +3,14 @@
 	<ContentPage.Padding>
 		<OnPlatform x:TypeArguments="Thickness">
 			<OnPlatform.iOS>
-        0, 20, 0, 0
-      </OnPlatform.iOS>
+       			 0, 20, 0, 0
+     		 </OnPlatform.iOS>
 			<OnPlatform.Android>
-        0, 0, 0, 0
-      </OnPlatform.Android>
+       			 0, 0, 0, 0
+     		 </OnPlatform.Android>
 			<OnPlatform.WinPhone>
-        0, 0, 0, 0
-      </OnPlatform.WinPhone>
+       			 0, 0, 0, 0
+      		</OnPlatform.WinPhone>
 		</OnPlatform>
 	</ContentPage.Padding>
 	<Grid Padding="0, 0, 0, 0" BackgroundColor="Transparent" RowSpacing="0" ColumnSpacing="0">
@@ -32,8 +32,8 @@
 				<DataTemplate>
 					<ViewCell x:Name="viewCellItem">
 						<ViewCell.ContextActions>
-							<MenuItem Text="Default" CommandParameter="{Binding .}" Clicked="viewCellItemContextActionDefaultClicked"/>
-							<MenuItem Text="Delete" IsDestructive="True" CommandParameter="{Binding .}" Clicked="viewCellItemContextActionDeleteClicked"/>
+							<MenuItem Text="Default" CommandParameter="{Binding .}" Clicked="viewCellItemContextActionDefaultClicked" />
+							<MenuItem Text="Delete" IsDestructive="True" CommandParameter="{Binding .}" Clicked="viewCellItemContextActionDeleteClicked" />
 						</ViewCell.ContextActions>
 						<ContentView>
 							<Grid Padding="5, 0, 0, 0" ColumnSpacing="10" RowSpacing="0" x:Name="gridItem">
@@ -49,7 +49,7 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
-		<Grid Grid.Row="2" Padding="10, 0, 0, 0" ColumnSpacing="10" RowSpacing="0" x:Name="gridInfo" BackgroundColor="White">
+		<Grid Grid.Row="2" Padding="10, 0, 0, 0" ColumnSpacing="10" RowSpacing="0" x:Name="gridInfo" BackgroundColor="Transparent">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="AUTO" />
 				<ColumnDefinition Width="*" />
