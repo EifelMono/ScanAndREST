@@ -24,7 +24,7 @@ namespace ScanAndREST
                 if (await Folder.CheckExistsAsync(FileName) == ExistenceCheckResult.FileExists)
                 {
                     var File = await Folder.GetFileAsync(FileName);
-                    var itemsAsString= await File.ReadAllTextAsync();
+                    var itemsAsString = await File.ReadAllTextAsync();
                     Items = JsonConvert.DeserializeObject<List<SettingValues>>(itemsAsString);
                 }
             }
@@ -75,9 +75,15 @@ namespace ScanAndREST
                 },
                 new SettingValues
                 {
-                    Name = "Scan and REST localhost",
+                    Name = "ScanAndRESTServer.Hello",
                     Default = false,
                     RESTUrl = "http://localhost:9876/Scan"
+                },
+                new SettingValues
+                {
+                    Name = "ScanAndRESTServer.Clipboard",
+                    Default = false,
+                    RESTUrl = "http://localhost:9876/ScanToClipboard"
                 },
                 new SettingValues
                 {
