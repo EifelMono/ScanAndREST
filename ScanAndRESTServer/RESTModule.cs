@@ -14,15 +14,21 @@ namespace ScanAndRESTServer
                 };
             Get["/Scan"] = parameters =>
                 {
+                    Console.WriteLine ("a");
                     var barcode = (string)Request.Query.Barcode;
-                    return string.Format("{0}\r\nHello World\r\n{1}", barcode, DateTime.Now.ToString());
+                    var datetime= DateTime.Now.ToString();
+                    Console.WriteLine ("Scan {0} barcode={1}", datetime, barcode);
+                    return string.Format("{0}\r\nHello World\r\n{1}", barcode, datetime);
                 };
 
             Get["/ScanToClipboard"] = parameters =>
                 {
+                    Console.WriteLine ("b");
                     var barcode = (string)Request.Query.Barcode;
-                    Helper.ClipboarCopy(barcode);
-                    return string.Format("{0}\r\nClipboard\r\n{1}", barcode, DateTime.Now.ToString());
+                    var datetime= DateTime.Now.ToString();
+                    Console.WriteLine ("ScanToClipboard {0} barcode={1}", datetime, barcode);
+                    Helper.AddClipboard(barcode);
+                    return string.Format("{0}\r\nClipboard\r\n{1}", barcode, datetime);
                 };
             After += nancyContext =>
                 {
