@@ -61,7 +61,7 @@ namespace ScanAndREST
             labelBarcode.Text = "";
             labelBarcodeFormat.Text = "";
             labelResult.Text = "";
-            string Barcode = "eifelmono";
+            string Barcode = "eifelmono "+ DateTime.Now.ToString("hh:mm:ss");
             string BarcodeFormat = "";
 
             circleImageStart.BorderColor = Color.Red;
@@ -69,6 +69,7 @@ namespace ScanAndREST
             {
                 if (Backdoor.IsCameraAvailable)
                 {
+                    Barcode= "";
                     if (scanner == null)
                         scanner = new MobileBarcodeScanner();
                     scanner.TopText = CurrentSettingValues.ScannerTopText;

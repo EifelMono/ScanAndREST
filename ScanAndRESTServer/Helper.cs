@@ -17,56 +17,51 @@ namespace ScanAndRESTServer
 
         public static void ClipboardMainThread()
         {
-            try
-            {
-                string newClipboardText = null;
-                lock (ClipboardTexts)
+            TryCatch(() =>
                 {
-                    if (ClipboardTexts.Count > 0)
+                    string newClipboardText = null;
+                    lock (ClipboardTexts)
                     {
-                        newClipboardText = ClipboardTexts[0];
-                        ClipboardTexts.RemoveAt(0);
+                        if (ClipboardTexts.Count > 0)
+                        {
+                            newClipboardText = ClipboardTexts[0];
+                            ClipboardTexts.RemoveAt(0);
+                        }
                     }
-                }
-                if (newClipboardText != null)
-                {
-                    switch (Environment.OSVersion.Platform)
+                    if (newClipboardText != null)
                     {
+                        switch (Environment.OSVersion.Platform)
+                        {
                     #region MacOSX
-                        case PlatformID.Unix:
-                        case PlatformID.MacOSX:
-                            TryExcept(() =>
-                                {
-                                    using (var process = new Process())
+                            case PlatformID.Unix:
+                            case PlatformID.MacOSX:
+                                TryCatch(() =>
                                     {
-                                        process.StartInfo = new ProcessStartInfo("pbcopy", "-pboard general -Prefer txt");
-                                        process.StartInfo.UseShellExecute = false;
-                                        process.StartInfo.RedirectStandardInput = true;
-                                        process.StartInfo.RedirectStandardOutput = false;
-                                        process.Start();
-                                        process.StandardInput.Write(newClipboardText);
-                                        process.StandardInput.Close();
-                                        process.WaitForExit();
-                                    }
-                                });
-                            break;
+                                        using (var process = new Process())
+                                        {
+                                            process.StartInfo = new ProcessStartInfo("pbcopy", "-pboard general -Prefer txt");
+                                            process.StartInfo.UseShellExecute = false;
+                                            process.StartInfo.RedirectStandardInput = true;
+                                            process.StartInfo.RedirectStandardOutput = false;
+                                            process.Start();
+                                            process.StandardInput.Write(newClipboardText);
+                                            process.StandardInput.Close();
+                                            process.WaitForExit();
+                                        }
+                                    });
+                                break;
                     #endregion
                     #region Windows
-                        default:
-                            TryExcept(() => Clipboard.SetText(newClipboardText));
-                            break;
+                            default:
+                                TryCatch(() => Clipboard.SetText(newClipboardText));
+                                break;
                     #endregion
+                        }
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
+                });
         }
 
-        public
-        static void AddClipboard(string text)
+        public static void AddClipboard(string text)
         {
             lock (ClipboardTexts)
             {
@@ -96,14 +91,17 @@ namespace ScanAndRESTServer
 
         #region Others
 
-        public static void TryExcept(Action action)
+        public static void TryCatch(Action action)
         {
             try
             {
                 action();
             }
-            catch
+            catch (Exception ex)
             {
+                #if DEBUG
+                Console.WriteLine(ex);
+                #endif
             }
         }
 

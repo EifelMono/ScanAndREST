@@ -18,7 +18,7 @@ namespace ScanAndRESTServer
                 foreach (var ipAddress in Helper.GetIpAddresses())
                     if (ipAddress.AddressFamily == AddressFamily.InterNetwork)
                         Console.WriteLine(ipAddress.ToIPAddressString());
-                Console.WriteLine("Return will end the program");
+                Console.WriteLine("Return will terminate the program");
                 while (true)
                 {
                     if (Console.KeyAvailable && Console.ReadKey().Key == ConsoleKey.Enter)

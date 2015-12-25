@@ -75,7 +75,7 @@ namespace ScanAndREST
                 },
                 new SettingValues
                 {
-                    Name = "ScanAndRESTServer.Hello",
+                    Name = "ScanAndRESTServer.Scan",
                     Default = false,
                     RESTUrl = "http://localhost:9876/Scan"
                 },
