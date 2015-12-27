@@ -40,6 +40,9 @@
       <HintPath>..\packages\Nancy.1.4.3\lib\net40\Nancy.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="EifelMono.Extensions">
+      <HintPath>..\packages\EifelMono.Extensions.2.0.0\lib\net45\EifelMono.Extensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />

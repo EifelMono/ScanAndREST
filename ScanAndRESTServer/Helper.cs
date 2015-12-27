@@ -6,6 +6,7 @@ using System.Threading;
 using System.CodeDom.Compiler;
 using System.Linq.Expressions;
 using System.Collections.Generic;
+using EifelMono.Extensions;
 
 namespace ScanAndRESTServer
 {
@@ -17,7 +18,7 @@ namespace ScanAndRESTServer
 
         public static void ClipboardMainThread()
         {
-            TryCatch(() =>
+            Log.Try(() =>
                 {
                     string newClipboardText = null;
                     lock (ClipboardTexts)
@@ -35,7 +36,7 @@ namespace ScanAndRESTServer
                     #region MacOSX
                             case PlatformID.Unix:
                             case PlatformID.MacOSX:
-                                TryCatch(() =>
+                                Log.Try(() =>
                                     {
                                         using (var process = new Process())
                                         {
@@ -53,7 +54,7 @@ namespace ScanAndRESTServer
                     #endregion
                     #region Windows
                             default:
-                                TryCatch(() => Clipboard.SetText(newClipboardText));
+                                Log.Try(() => Clipboard.SetText(newClipboardText));
                                 break;
                     #endregion
                         }
@@ -89,23 +90,6 @@ namespace ScanAndRESTServer
 
         #endregion
 
-        #region Others
-
-        public static void TryCatch(Action action)
-        {
-            try
-            {
-                action();
-            }
-            catch (Exception ex)
-            {
-                #if DEBUG
-                Console.WriteLine(ex);
-                #endif
-            }
-        }
-
-        #endregion
     }
 }
 
