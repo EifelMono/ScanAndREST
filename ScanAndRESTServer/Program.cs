@@ -10,7 +10,9 @@ namespace ScanAndRESTServer
         [STAThread]
         public static void Main(string[] args)
         {
-            string HostUriAsString = string.Format("http://{0}:{1}", "localhost", "9876");
+            var Host = "localhost";
+            var Port = 9876;
+            string HostUriAsString = string.Format("http://{0}:{1}", Host, Port);
             using (NancyHost host = new NancyHost(new Uri(HostUriAsString)))
             {
                 Console.WriteLine("RESTServer started on {0}", HostUriAsString);

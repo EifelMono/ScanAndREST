@@ -41,7 +41,7 @@
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="EifelMono.Extensions">
-      <HintPath>..\packages\EifelMono.Extensions.2.0.0\lib\net45\EifelMono.Extensions.dll</HintPath>
+      <HintPath>..\packages\EifelMono.Extensions.2.1.0\lib\net45\EifelMono.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
